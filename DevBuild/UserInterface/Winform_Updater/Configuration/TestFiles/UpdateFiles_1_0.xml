@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Files xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <!--
+  Important points on Pre and Post DLLS
+  =======================================
+  1. Include an <UpdateFile> entry to download these DLL from the update server.
+  2. For <PreUpdateAssemblyPath> and <PostUpdateAssemblyPath>, always mention temp folder
+  path where all files downloaded before the actual update of file happens.
+  
+  For ex: If the exe which has AppUpdater component refered is in C:\MyApp\MyUpdater.exe,
+  then AppUpdater will first create C:\MyApp\Temp folder to download all update files.
+  After successful download, File from Temp folder will be moved as per the <DestinationFolder>
+  reference path value.
+  Pre and Post DLLs will be in temp folder, hence you can mention these values are shown below.
+  <PreUpdateAssemblyPath>temp\MyPreupdate.dll</PreUpdateAssemblyPath>
+  
+  Important note on {ignore} to use as DestinationFolder="{ignore}"
+  =================================================================
+  Taking the example of pre and post update DLLs, these DLLs will be downloaded to client
+  machine, run and later required to be deleted.
+  AppUpdater has default behaviour of moving all files specified in <UpdateFile> list.
+  For a given destination folder setting in <UpdateFile>, DestinationFolder="help\" 
+  AppUpdater will create (if not present) 'help' folder (in the folder where AppUpdater is
+  running) and move update files. 
+  
+  For DestinationFolder="", update file will be moved to the folder where AppUpdater
+  is running.
+  
+  For DestinationFolder="{ignore}", The update file will be downloaded in temp folder
+  but will not be moved anywhere. This file will delete along with temp folder when
+  update process is finished.
+  -->
+
+  <!-- The Pre update DLL file path when downloaded at client's machine.-->
+  <PreUpdate AssemblyPath="temp\PrePostUpdaters.dlx"  FullyQualifiedName="PrePostUpdaters.MyAppPreUpdates"/>
+
+  <!--The post update DLL file path when downloaded at client's machine.-->
+  <PostUpdate AssemblyPath="temp\PrePostUpdaters.dlx"  FullyQualifiedName="PrePostUpdaters.MyAppPostUpdates"/>
+  
+  <!--
+  SourceURI:         (Requierd) The http(s) URL (without file name) must end with "/" 
+  
+  DestinationFolder: (Optional) Relative folder path present or to be created on client's machine. 
+                     For now, always consider update exe deploying at the top most folder of 
+                     the application so that any updates should not require 
+                     back traversing (like ..\..\..\App1\update) to parent folders.
+                     Ex: DestinationFolder="..\..\..\log1\ll" is not recommended.
+                     DestinationFolder="log1\app1\upd2" is corre
+                     No value to this attribute will deploy updated file in the folder where updater 
+                     is present.
+                     
+  FileName:          (Requierd) Actual file name present online and available for download.
+                     Updater appends "SourceURI + Filename" and then downloads it.
+                     
+  RenameFileTo:      (Optional) When updater is deploying downloaded update file, if you want
+                     deploy file with some other name and file extension, mention that here.
+                     
+ MoreInfoURL:        (Optional) Online URL to provide more details on currenlty downloading update file.
+                     
+ ShortDescription:   (Optional) One liner Quick info about the update file
+  -->
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="{ignore}" FileName="PrePostUpdaters.dlx" RenameFileTo="" MoreInfoURL="http://srushtisoft.com/" ShortDescription="Desktop updates" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log1\ll" FileName="File1.doc" RenameFileTo="HowToGuid.doc" MoreInfoURL="http://srushtisoft.com/" ShortDescription="Desktop updates" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\" FileName="File1.doc" RenameFileTo="" MoreInfoURL="http://srushtisoft.com/documents/flexo.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log2" FileName="File2.doc" RenameFileTo="File2.txt" MoreInfoURL="http://srushtisoft.com/documents/quickquest.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\" FileName="File1.doc" RenameFileTo="one.doc" MoreInfoURL="http://srushtisoft.com/documents/cdindexer.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log2\ll" FileName="File2.doc" RenameFileTo="two.txt" MoreInfoURL="http://srushtisoft.com/documents/whorv.html" ShortDescription="Phase 1 bug fixes." />
+</Files>

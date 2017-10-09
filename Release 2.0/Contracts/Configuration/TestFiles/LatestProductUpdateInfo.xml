@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+         AppVersion="1.0.0" 
+         ProductURL="http://www.srushtisoft.com/documents/quickquest.html" 
+         UpdateVersion="1.0.1" 
+         UpdateFilesXMLPath="Configuration\TestFiles\UpdateFiles_1_0.xml" />

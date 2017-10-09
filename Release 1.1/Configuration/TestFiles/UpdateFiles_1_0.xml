@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Files xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--The Pre update DLL file path when downloaded at client's machine.-->
+  <PreUpdateAssemblyPath></PreUpdateAssemblyPath>
+
+  <!--The post update DLL file path when downloaded at client's machine.-->
+  <PostUpdateAssemblyPath></PostUpdateAssemblyPath>
+  <!--
+  SourceURI:         (Requierd) The http(s) URL (without file name) must end with "/" 
+  
+  DestinationFolder: (Optional) Relative folder path present or to be created on client's machine. 
+                     For now, always consider update exe deploying at the top most folder of 
+                     the application so that any updates should not require 
+                     back traversing (like ..\..\..\App1\update) to parent folders.
+                     Ex: DestinationFolder="..\..\..\log1\ll" is not recommended.
+                     DestinationFolder="log1\app1\upd2" is corre
+                     No value to this attribute will deploy updated file in the folder where updater 
+                     is present.
+                     
+  FileName:          (Requierd) Actual file name present online and available for download.
+                     Updater appends "SourceURI + Filename" and then downloads it.
+                     
+  RenameFileTo:      (Optional) When updater is deploying downloaded update file, if you want
+                     deploy file with some other name and file extension, mention that here.
+                     
+ MoreInfoURL:        (Optional) Online URL to provide more details on currenlty downloading update file.
+                     
+ ShortDescription:   (Optional) One liner Quick info about the update file
+  -->
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log1\ll" FileName="File1.doc" RenameFileTo="HowToGuid.doc" MoreInfoURL="http://srushtisoft.com/" ShortDescription="Desktop updates" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\" FileName="File1.doc" RenameFileTo="" MoreInfoURL="http://srushtisoft.com/documents/flexo.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log2" FileName="File2.doc" RenameFileTo="File2.txt" MoreInfoURL="http://srushtisoft.com/documents/quickquest.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\" FileName="File1.doc" RenameFileTo="one.doc" MoreInfoURL="http://srushtisoft.com/documents/cdindexer.html" ShortDescription="UI Improvements" />
+  <UpdateFile SourceURI="http://srushtisoft.com/updates/demo/" DestinationFolder="logs\log2\ll" FileName="File2.doc" RenameFileTo="two.txt" MoreInfoURL="http://srushtisoft.com/documents/whorv.html" ShortDescription="Phase 1 bug fixes." />
+</Files>
